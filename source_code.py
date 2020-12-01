@@ -1,26 +1,26 @@
 import time
 import threading
 dic={}
-def create(): #timeout=0 means no expiry time if so we need to have an expiry time for key we can pass a third argument.
+def create(): 
     key = input("enter a key: ")
     values= int(input("enter a value: "))
     timeout= int(input("enter expiry time: "))
     if key in dic:
-        print("Key already present in database. Enter a valid key \n")# if key is already present print this statement
+        print("Key already present in database. Enter another key \n")# if key is already present print this statement
     else:
         if (key.isalpha()):#to check whether all the elements in key are alphabets
-            if (len(dic)<(1024*1024*1024) and values <= (16*1024*1024)):#to check the specified requirements in assignment
+            if (len(dic)<(1024*1024*1024) and values <= (16*1024*1024)):#to check the specified requirements 
                 if (timeout == 0):
                     store=[values,timeout] #since in this case we need two values for one key (i.e) value as well as timeout; we are storing it in list
                 else:
                     store=[values, time.time()+timeout]# in this time  is an inbuilt function is used to get the present time and to it the timeout variable is added so the key expires in mentioned time
-            if (len(key)<= 32):#to check the specified requirements in assignment
+            if (len(key)<= 32):#to check the specified requirements 
                 dic[key]=store
                 print("Key stored \n")
             else:
                 print("Memory limit exceeded \n ")# if the entered value exceed the mentioned requirement then print this error message
         else:
-            print("Key only take alphabets. Please enter a valid key\n")# if entered key is not alphabets print this error message
+            print("Key can only take alphabets. Please enter a valid key\n")# if entered key is not alphabets print this error message
 
 def read():
     key = input("enter a key: ")
